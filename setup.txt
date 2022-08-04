@@ -10,4 +10,5 @@ pip install flask
 
 //to check if flask is installed
  ... start python interpreter in terminal === > python3
+ ......>>> import flask
  .....   output =>      >>> _
