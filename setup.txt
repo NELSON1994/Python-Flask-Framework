@@ -16,3 +16,15 @@ pip install flask
 
  // starting it >>>   export FLASK_APP=main.py
 // to start the server >>>>   flask run
+
+Web Server Gateway Interface (WSGI) has been adopted as a standard for Python web application development.
+WSGI is a specification for a universal interface between the web server and the web applications.
+
+Werkzeug-> used by flask
+It is a WSGI toolkit, which implements requests, response objects, and other utility functions., the routes/url should be unique
+
+Jinja2 is a popular templating engine for Python.
+
+app.run(host, port, debug, options)
+
+
