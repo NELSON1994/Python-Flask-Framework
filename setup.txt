@@ -12,3 +12,7 @@ pip install flask
  ... start python interpreter in terminal === > python3
  ......>>> import flask
  .....   output =>      >>> _
+
+
+ // starting it >>>   export FLASK_APP=main.py
+// to start the server >>>>   flask run
