@@ -1,3 +1,5 @@
+from flask import redirect, url_for
+
 from app import app
 
 
@@ -27,3 +29,20 @@ def passPathVariable(name):
     # for int--> %d.  float--> %f
     return "my name is : %s" % name
 
+
+@app.route('/admin')
+def hello_admin():
+    return 'Hello Admin'
+
+
+@app.route('/department/<department>')
+def hello_guest(department):
+    return 'Department name is : %s' % department
+
+
+@app.route('/department/<name>')
+def hello_user(name):
+    if name == 'admin':
+        return redirect(url_for('hello_admin'))
+    else:
+        return redirect(url_for('hello_guest', department=name))
