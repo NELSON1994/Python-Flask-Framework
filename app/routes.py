@@ -1,4 +1,4 @@
-from flask import redirect, url_for, request
+from flask import redirect, url_for, request, render_template
 
 from app import app
 
@@ -62,6 +62,17 @@ def login():
         return redirect(url_for('success', name=user))
     else:
         user = request.args.get('nm')
-        password= request.args.get('password')
+        password = request.args.get('password')
         print("Password : ", password)
         return redirect(url_for('success', name=user))
+
+
+@app.route('/hello/<user>/<department>/<int:marks>')
+def hello_name(user, department, marks):
+    return render_template('hello.html', name=user, department=department, marks=marks)
+
+
+@app.route('/result')
+def result():
+    dictn= dict(phy=50, che=60, maths=70)
+    return render_template('result.html', result=dictn)

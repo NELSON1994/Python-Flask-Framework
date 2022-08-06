@@ -27,4 +27,6 @@ Jinja2 is a popular templating engine for Python.
 
 app.run(host, port, debug, options)
 
+ Instead of returning hardcode HTML from the function, a HTML file can be rendered by the render_template() function.--> the use of jinja2
+
 
