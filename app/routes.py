@@ -74,5 +74,22 @@ def hello_name(user, department, marks):
 
 @app.route('/result')
 def result():
-    dictn= dict(phy=50, che=60, maths=70)
+    dictn = dict(phy=50, che=60, maths=70)
     return render_template('result.html', result=dictn)
+
+
+@app.route('/loopingvalue')
+def indexforlooping():
+    user = {'username': 'Miguel'}
+    posts = [
+        {
+            'author': {'username': 'John'},
+            'body': 'Beautiful day in Portland!'
+        },
+        {
+            'author': {'username': 'Susan'},
+            'body': 'The Avengers movie was so cool!'
+        }
+    ]
+    # return render_template('index.html', title='Home', user=user, posts=posts)
+    return render_template('body.html', title='Home', user=user, posts=posts)
