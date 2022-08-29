@@ -29,4 +29,15 @@ app.run(host, port, debug, options)
 
  Instead of returning hardcode HTML from the function, a HTML file can be rendered by the render_template() function.--> the use of jinja2
 
+ // FLASK EXTENSIONS
+ Flask Mail − provides SMTP interface to Flask application
+ Flask WTF − adds rendering and validation of WTForms
+ Flask SQLAlchemy − adds SQLAlchemy support to Flask application
+ Flask Sijax − Interface for Sijax - Python/jQuery library that makes AJAX easy to use in web applications
+
+ FLASK --MAIL
+    pip install Flask-Mail
+
+    ---> flask-mail.Message(subject, recipients, body, html, sender, cc, bcc, reply-to, date, charset, extra_headers, mail_options, rcpt_options)
+
 

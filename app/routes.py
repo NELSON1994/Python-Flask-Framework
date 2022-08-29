@@ -1,7 +1,28 @@
-from flask import redirect, url_for, request, render_template, flash
+from flask import redirect, url_for, request, render_template, flash, Flask
 # from werkzeug import secure_filename
+from flask_mail import Mail, Message
+
+app = Flask(__name__)
+
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'nelson62moses@gmail.com'
+app.config['MAIL_PASSWORD'] = '*********'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
 
 from app import app
+
+
+mail = Mail(app)
+
+@app.route("/email")
+def emailsending():
+   msg = Message('FLASK EMAIL', sender = 'nelson62moses@gmail.com', recipients = ['nelson.otieno@andela.com'])
+   msg.body = "Am sending email from flask application"
+   mail.send(msg)
+   return "Sent successfully"
+
 # from config import Config
 
 @app.route('/')
