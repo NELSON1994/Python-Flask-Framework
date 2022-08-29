@@ -1,4 +1,5 @@
 from flask import redirect, url_for, request, render_template, flash
+# from werkzeug import secure_filename
 
 from app import app
 # from config import Config
@@ -130,3 +131,17 @@ def login1():
             flash('You were successfully logged in')
             return redirect(url_for('index'))
     return render_template('login.html', error=error)
+
+
+@app.route('/upload')
+def upload_file():
+    return render_template('upload.html')
+
+
+@app.route('/uploader', methods=['GET', 'POST'])
+def upload_file1():
+    if request.method == 'POST':
+        f = request.files['file']
+        # f.save(secure_filename(f.filename))
+        f.save(f.filename)
+        return 'file uploaded successfully'
