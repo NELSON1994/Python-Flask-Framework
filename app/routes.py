@@ -1,7 +1,7 @@
-from flask import redirect, url_for, request, render_template
+from flask import redirect, url_for, request, render_template, flash
 
 from app import app
-
+# from config import Config
 
 @app.route('/')
 @app.route('/index')
@@ -93,3 +93,40 @@ def indexforlooping():
     ]
     # return render_template('index.html', title='Home', user=user, posts=posts)
     return render_template('body.html', title='Home', user=user, posts=posts)
+
+
+@app.route('/result/formdata', methods=['POST', 'GET'])
+def resultfromformtotemplate():
+    if request.method == 'POST':
+        result = request.form
+        return render_template("result.html", result=result)
+    else:
+        print("----> get method")
+
+
+@app.route('/appkey')
+def getappkey():
+    print("APP KEY : ", app.config['SECRET_KEY'])
+    return  '''
+    <html>
+        <head>
+            <title>Home Page - Flask App</title>
+        </head>
+        <body>
+            <h1>Hello, ''' + app.config['SECRET_KEY'] + '''!</h1>
+            <p>Welcome onboard</p>
+        </body>
+    </html>'''
+
+
+@app.route('/login1', methods=['GET', 'POST'])
+def login1():
+    error = None
+    if request.method == 'POST':
+        if request.form['username'] != 'admin' or \
+                request.form['password'] != 'admin':
+            error = 'Invalid username or password. Please try again!'
+        else:
+            flash('You were successfully logged in')
+            return redirect(url_for('index'))
+    return render_template('login.html', error=error)
