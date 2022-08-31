@@ -1,6 +1,11 @@
 from flask import redirect, url_for, request, render_template, flash, Flask
 # from werkzeug import secure_filename
 from flask_mail import Mail, Message
+from flask_wtf import Form
+# from wtforms import *
+from wtforms import IntegerField, TextAreaField, SubmitField, RadioField, SelectField, StringField
+from wtforms.validators import DataRequired
+
 
 app = Flask(__name__)
 
@@ -11,8 +16,9 @@ app.config['MAIL_PASSWORD'] = '*********'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 
-from app import app
+app.secret_key = 'development key'
 
+from app import app
 
 mail = Mail(app)
 
@@ -166,3 +172,30 @@ def upload_file1():
         # f.save(secure_filename(f.filename))
         f.save(f.filename)
         return 'file uploaded successfully'
+
+
+class ContactForm(Form):
+    # [validators.Required("Please enter your name.")]
+    # , validators.Email("Please enter your email address.")]
+    name = StringField("Name Of Student", validators=[DataRequired("Please enter your name")])
+    Gender = RadioField('Gender', choices=[('M', 'Male'), ('F', 'Female')])
+    Address = TextAreaField("Address")
+    email = StringField("Email",  validators=[DataRequired("Please enter your email")])
+    Age = IntegerField("age")
+    language = SelectField('Languages', choices=[('cpp', 'C++'),
+                                                 ('py', 'Python')])
+    submit = SubmitField("Send")
+
+
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+    form = ContactForm()
+
+    if request.method == 'POST':
+        if form.validate() == False:
+            flash('All fields are required.')
+            return render_template('contact.html', form=form)
+        # else:
+        #     return render_template('success.html')
+        # elif request.method == 'GET':
+        # return render_template('contact.html', form=form)

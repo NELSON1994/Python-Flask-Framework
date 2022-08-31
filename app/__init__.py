@@ -1,5 +1,6 @@
 from flask import Flask, redirect, url_for
 from flask_mail import Mail
+from flask_wtf import Form
 
 app = Flask(__name__)
 

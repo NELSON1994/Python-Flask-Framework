@@ -40,4 +40,8 @@ app.run(host, port, debug, options)
 
     ---> flask-mail.Message(subject, recipients, body, html, sender, cc, bcc, reply-to, date, charset, extra_headers, mail_options, rcpt_options)
 
+ FLASK ---WTF
+    -->a flexible form, rendering and validation library comes handy. Flask-WTF extension provides a simple interface with this WTForms library.
+    pip install flask-WTF
+
 
